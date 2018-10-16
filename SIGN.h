@@ -62,6 +62,7 @@ public:
     friend istream& operator >> (istream&, SIGN&);
     ~SIGN()
     {
+	cout<<"Объекты удалены деструктором!\n";
         delete [] name;
         delete [] surname;
         delete [] zodiac_sign;
