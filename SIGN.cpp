@@ -3,71 +3,54 @@
 #include <cstring>
 #include <windows.h>
 #include <iomanip>
-
+#include "SIGN.h"
+#include "Sort.cpp"
+#include "ostream.cpp"
+#include "istream.cpp"
 
 using namespace std;
 HANDLE hConsoleHandle=GetStdHandle(STD_OUTPUT_HANDLE);
 
-class SIGN
+SIGN::SIGN()
 {
+    cout<<"Вызов конструктора без параметров\n";
+    name = new char [15];
+    surname = new char [15];
+    zodiac_sign = new char [15];
 
-private:
-    char *name;
-    char *surname;
-    char *zodiac_sign;
-    int birthday[3];
-public:
-    SIGN()
-    {
-        cout<<"Вызов конструктора без параметров\n";
-        name = new char [15];
-        surname = new char [15];
-        zodiac_sign = new char [15];
-
-    }
-    SIGN(char *a, char *b, char  *c, int d, int e, int f)
-	{
-        cout<<"Вызов конструктора с параметрами\n";
-        name = new char [15];
-        surname = new char [15];
-        zodiac_sign = new char [15];
-        strcpy(name, a);
-        strcpy(surname, b);
-        strcpy(zodiac_sign, c);
-        birthday[0]=d;
-        birthday[1]=e;
-        birthday[2]=f;
-	}
-    SIGN(const SIGN & arg)
-    {
-        cout<<"Вызов конструктора копирования\n";
-		name = new char [15];
-        surname = new char [15];
-        zodiac_sign = new char [15];
-		for(int q=0; q<15; q++)
-            name[q]=arg.name[q];
-        for(int q=0; q<15; q++)
-            surname[q]=arg.surname[q];
-        for(int q=0; q<15; q++)
-            zodiac_sign[q]=arg.zodiac_sign[q];
-        for(int q=0; q<3; q++)
-            birthday[q]=arg.birthday[q];
-	}
-    bool show(char *vv)
-    {
-        return !strcmp(zodiac_sign, vv);
-    }
-    friend bool Sort(SIGN, SIGN);
-    friend ostream& operator << (ostream&, SIGN&);
-    friend istream& operator >> (istream&, SIGN&);
-    ~SIGN()
-    {
-	cout<<"Объекты удалены деструктором!\n";
-        delete [] name;
-        delete [] surname;
-        delete [] zodiac_sign;
-    }
-};
+}
+SIGN::SIGN(char *a, char *b, char  *c, int d, int e, int f)
+{
+    cout<<"Вызов конструктора с параметрами\n";
+    name = new char [15];
+    surname = new char [15];
+    zodiac_sign = new char [15];
+    strcpy(name, a);
+    strcpy(surname, b);
+    strcpy(zodiac_sign, c);
+    birthday[0]=d;
+    birthday[1]=e;
+    birthday[2]=f;
+}
+SIGN::SIGN(const SIGN & arg)
+{
+    cout<<"Вызов конструктора копирования\n";
+    name = new char [15];
+    surname = new char [15];
+    zodiac_sign = new char [15];
+    for(int q=0; q<15; q++)
+        name[q]=arg.name[q];
+    for(int q=0; q<15; q++)
+        surname[q]=arg.surname[q];
+    for(int q=0; q<15; q++)
+        zodiac_sign[q]=arg.zodiac_sign[q];
+    for(int q=0; q<3; q++)
+        birthday[q]=arg.birthday[q];
+}
+bool SIGN::show(char *vv)
+{
+    return !strcmp(zodiac_sign, vv);
+}
 
 bool Sort(SIGN frst, SIGN scnd)
 {
@@ -94,6 +77,7 @@ ostream& operator << (ostream& os, SIGN& sn)
     SetConsoleTextAttribute(hConsoleHandle, 15);
     return os;
 }
+
 istream& operator >> (istream& is, SIGN& sn)
 {
     SYSTEMTIME st;
@@ -163,4 +147,11 @@ istream& operator >> (istream& is, SIGN& sn)
     }
     cout<<"\n\n";
     return is;
+}
+
+SIGN::~SIGN()
+{
+    delete [] name;
+    delete [] surname;
+    delete [] zodiac_sign;
 }
