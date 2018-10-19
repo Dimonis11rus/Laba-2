@@ -1,6 +1,6 @@
 #include <iostream>
 #include <locale>
-#include "SIGN.h"
+#include "SIGN.cpp"
 #define N 8
 
 using namespace std;
