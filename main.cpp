@@ -56,10 +56,12 @@ int main()
                 cout<<"\nЛюдей, с данным знаком зодиака, нет\n\n";
             break;
             }
-        case 0: exit(1); break;
         }
+        if(choise==0)
+            break;
         system("pause");
         system("cls");
     }
+    delete [] obj;
     return 0;
 }
