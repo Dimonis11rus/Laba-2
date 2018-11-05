@@ -54,10 +54,7 @@ bool Sort(SIGN *frst, SIGN *scnd)
     unsigned int a, b;
     a=frst->birthday[0]+frst->birthday[1]*30+frst->birthday[2]*365;
     b=scnd->birthday[0]+scnd->birthday[1]*30+scnd->birthday[2]*365;
-    if(a>b)
-        return true;
-    else
-        return false;
+    return a>b?true:false;
 }
 
 ostream& operator << (ostream& os, SIGN& sn)
