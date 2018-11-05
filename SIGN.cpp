@@ -4,9 +4,6 @@
 #include <windows.h>
 #include <iomanip>
 #include "SIGN.h"
-#include "Sort.cpp"
-#include "ostream.cpp"
-#include "istream.cpp"
 
 using namespace std;
 HANDLE hConsoleHandle=GetStdHandle(STD_OUTPUT_HANDLE);
@@ -52,11 +49,11 @@ bool SIGN::show(char *vv)
     return !strcmp(zodiac_sign, vv);
 }
 
-bool Sort(SIGN frst, SIGN scnd)
+bool Sort(SIGN *frst, SIGN *scnd)
 {
     unsigned int a, b;
-    a=frst.birthday[0]+frst.birthday[1]*30+frst.birthday[2]*365;
-    b=scnd.birthday[0]+scnd.birthday[1]*30+scnd.birthday[2]*365;
+    a=frst->birthday[0]+frst->birthday[1]*30+frst->birthday[2]*365;
+    b=scnd->birthday[0]+scnd->birthday[1]*30+scnd->birthday[2]*365;
     if(a>b)
         return true;
     else
@@ -151,6 +148,7 @@ istream& operator >> (istream& is, SIGN& sn)
 
 SIGN::~SIGN()
 {
+    cout<<"Вызов деструктора\n";
     delete [] name;
     delete [] surname;
     delete [] zodiac_sign;
