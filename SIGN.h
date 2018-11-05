@@ -16,10 +16,9 @@ public:
     SIGN(char *a, char *b, char  *c, int d, int e, int f);
     SIGN(const SIGN & arg);
     bool show(char *vv);
-    friend bool Sort(SIGN, SIGN);
+    friend bool Sort(SIGN*, SIGN*);
     friend ostream& operator << (ostream&, SIGN&);
     friend istream& operator >> (istream&, SIGN&);
     ~SIGN();
 };
-
 #endif
